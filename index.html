@@ -1,0 +1,3415 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SJ 탐정사무소 — 의심을 확신으로, 침묵을 증거로</title>
+    <meta
+      name="description"
+      content="20년 경력의 SJ 탐정사무소. 외도조사·사람찾기·기업조사·사기피해 추적. 100% 비밀보장, 24시간 무료상담."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --bg-soft: #f6f3ee;
+        --bg-dark: #0e0e10;
+        --bg-darker: #050507;
+        --line: #e5e0d6;
+        --line-dark: #2a2a2e;
+        --text: #161616;
+        --text-soft: #5d5d5d;
+        --text-mute: #8a8a8a;
+        --gold: #b89968;
+        --gold-light: #d4b888;
+        --gold-deep: #8c6f43;
+        --red: #b8332a;
+        --maxw: 1200px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          'Pretendard',
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        background: none;
+      }
+
+      .serif {
+        font-family: 'Noto Serif KR', serif;
+        letter-spacing: -0.02em;
+      }
+      .serif-en {
+        font-family: 'Cormorant Garamond', serif;
+        letter-spacing: 0.02em;
+      }
+      .container {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* === HEADER === */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(14, 14, 16, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+      }
+      header .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 78px;
+      }
+      .logo {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        color: #fff;
+      }
+      .logo-mark {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--gold-light);
+      }
+      .logo-text {
+        font-size: 13px;
+        letter-spacing: 0.3em;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 300;
+      }
+      nav ul {
+        display: flex;
+        gap: 38px;
+        list-style: none;
+      }
+      nav ul a {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        transition: color 0.2s;
+      }
+      nav ul a:hover {
+        color: var(--gold-light);
+      }
+      .header-cta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .header-cta .tel {
+        color: var(--gold-light);
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+      .btn-consult {
+        background: var(--gold);
+        color: #fff;
+        padding: 12px 22px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        border-radius: 2px;
+        transition: background 0.2s;
+      }
+      .btn-consult:hover {
+        background: var(--gold-deep);
+      }
+      .menu-toggle {
+        display: none;
+        width: 38px;
+        height: 38px;
+        position: relative;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 2px;
+        cursor: pointer;
+        padding: 0;
+      }
+      .menu-toggle span {
+        position: absolute;
+        left: 9px;
+        right: 9px;
+        height: 1.5px;
+        background: var(--gold-light);
+        transition:
+          transform 0.3s ease,
+          opacity 0.2s ease,
+          top 0.3s ease;
+      }
+      .menu-toggle span:nth-child(1) {
+        top: 12px;
+      }
+      .menu-toggle span:nth-child(2) {
+        top: 18px;
+      }
+      .menu-toggle span:nth-child(3) {
+        top: 24px;
+      }
+      body.nav-open .menu-toggle span:nth-child(1) {
+        top: 18px;
+        transform: rotate(45deg);
+      }
+      body.nav-open .menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+      body.nav-open .menu-toggle span:nth-child(3) {
+        top: 18px;
+        transform: rotate(-45deg);
+      }
+
+      /* === HERO === */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(5, 5, 7, 0.85) 0%,
+            rgba(14, 14, 16, 0.65) 50%,
+            rgba(5, 5, 7, 0.9) 100%
+          ),
+          radial-gradient(ellipse at 30% 50%, #1a1612 0%, #050507 70%);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(184, 153, 104, 0.015) 2px,
+          rgba(184, 153, 104, 0.015) 4px
+        );
+        pointer-events: none;
+      }
+      .hero::after {
+        content: 'SJ';
+        position: absolute;
+        right: -40px;
+        bottom: -80px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 480px;
+        font-weight: 700;
+        color: rgba(184, 153, 104, 0.06);
+        line-height: 1;
+        letter-spacing: -0.05em;
+        pointer-events: none;
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        padding-top: 78px;
+        width: 100%;
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 28px;
+        font-size: 13px;
+        letter-spacing: 0.3em;
+        color: var(--gold-light);
+        font-weight: 400;
+      }
+      .hero-eyebrow::before {
+        content: '';
+        width: 44px;
+        height: 1px;
+        background: var(--gold);
+      }
+      .hero h1 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: clamp(36px, 5.6vw, 72px);
+        font-weight: 700;
+        line-height: 1.25;
+        letter-spacing: -0.03em;
+        margin-bottom: 32px;
+      }
+      .hero h1 .gold {
+        color: var(--gold-light);
+      }
+      .hero h1 .accent {
+        position: relative;
+        display: inline-block;
+      }
+      .hero h1 .accent::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 4px;
+        height: 12px;
+        background: rgba(184, 50, 42, 0.35);
+        z-index: -1;
+      }
+      .hero-sub {
+        font-size: clamp(15px, 1.4vw, 18px);
+        color: rgba(255, 255, 255, 0.78);
+        line-height: 1.9;
+        max-width: 620px;
+        margin-bottom: 48px;
+        font-weight: 300;
+      }
+      .hero-sub strong {
+        color: var(--gold-light);
+        font-weight: 500;
+      }
+      .hero-cta-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .btn-primary,
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 18px 32px;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        border-radius: 2px;
+        transition: all 0.25s ease;
+      }
+      .btn-primary {
+        background: var(--gold);
+        color: #fff;
+        box-shadow: 0 8px 24px rgba(184, 153, 104, 0.25);
+      }
+      .btn-primary:hover {
+        background: var(--gold-deep);
+        transform: translateY(-2px);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+      }
+      .btn-ghost:hover {
+        border-color: var(--gold-light);
+        color: var(--gold-light);
+      }
+      .hero-scroll {
+        position: absolute;
+        bottom: 36px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        writing-mode: vertical-rl;
+        z-index: 2;
+      }
+      .hero-scroll::after {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(
+          to bottom,
+          var(--gold) 0%,
+          transparent 100%
+        );
+        margin: 12px auto 0;
+        animation: scrollLine 2s ease-in-out infinite;
+      }
+      @keyframes scrollLine {
+        0%,
+        100% {
+          transform: scaleY(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scaleY(0.4);
+          opacity: 0.3;
+        }
+      }
+
+      /* === TRUST STRIP === */
+      .trust {
+        background: var(--bg-darker);
+        padding: 56px 0;
+        border-top: 1px solid rgba(184, 153, 104, 0.15);
+        border-bottom: 1px solid rgba(184, 153, 104, 0.15);
+        color: #fff;
+      }
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+      }
+      .trust-cell {
+        text-align: center;
+        padding: 12px 20px;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .trust-cell:last-child {
+        border-right: none;
+      }
+      .trust-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 56px;
+        font-weight: 600;
+        color: var(--gold-light);
+        line-height: 1;
+        margin-bottom: 12px;
+      }
+      .trust-num small {
+        font-size: 22px;
+        color: rgba(255, 255, 255, 0.5);
+        margin-left: 4px;
+      }
+      .trust-label {
+        font-size: 13px;
+        letter-spacing: 0.2em;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* === SECTION COMMON === */
+      section.block {
+        padding: 130px 0;
+      }
+      .section-head {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+      .section-eyebrow {
+        display: inline-block;
+        margin-bottom: 18px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 14px;
+        letter-spacing: 0.4em;
+        color: var(--gold-deep);
+        text-transform: uppercase;
+      }
+      .section-eyebrow::before,
+      .section-eyebrow::after {
+        content: '—';
+        margin: 0 12px;
+        color: var(--gold);
+      }
+      .section-title {
+        font-family: 'Noto Serif KR', serif;
+        font-size: clamp(28px, 3.4vw, 44px);
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: -0.025em;
+        color: var(--text);
+      }
+      .section-title .gold {
+        color: var(--gold-deep);
+      }
+      .section-sub {
+        margin-top: 22px;
+        font-size: 16px;
+        color: var(--text-soft);
+        line-height: 1.85;
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* === ABOUT === */
+      .about {
+        background: var(--bg-soft);
+        position: relative;
+        overflow: hidden;
+      }
+      .about-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .about-visual {
+        position: relative;
+        aspect-ratio: 4/5;
+        background: linear-gradient(135deg, #1a1a1c, #0e0e10);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .about-visual::before {
+        content: 'SJ';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 200px;
+        font-weight: 600;
+        color: var(--gold);
+        opacity: 0.9;
+      }
+      .about-visual::after {
+        content: 'DETECTIVE OFFICE EST. 2005';
+        position: absolute;
+        bottom: 32px;
+        left: 32px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 11px;
+        letter-spacing: 0.3em;
+      }
+      .about-text .label {
+        font-family: 'Cormorant Garamond', serif;
+        color: var(--gold-deep);
+        font-size: 14px;
+        letter-spacing: 0.3em;
+        margin-bottom: 14px;
+      }
+      .about-text h2 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: clamp(26px, 2.8vw, 38px);
+        font-weight: 700;
+        line-height: 1.45;
+        letter-spacing: -0.025em;
+        margin-bottom: 28px;
+      }
+      .about-text p {
+        color: var(--text-soft);
+        font-size: 16px;
+        line-height: 1.95;
+        margin-bottom: 16px;
+      }
+      .about-text .sign {
+        margin-top: 36px;
+        padding-top: 28px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+      }
+      .about-text .sign-name {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 22px;
+        font-weight: 700;
+      }
+      .about-text .sign-name small {
+        display: block;
+        font-size: 12px;
+        color: var(--text-mute);
+        font-weight: 400;
+        letter-spacing: 0.15em;
+        margin-top: 4px;
+      }
+      .about-text .sign-en {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 32px;
+        color: var(--gold-deep);
+        font-style: italic;
+      }
+
+      /* === SERVICES === */
+      .services {
+        background: #fff;
+      }
+      .svc-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+      }
+      .svc-card {
+        background: #fff;
+        padding: 56px 40px;
+        transition: all 0.3s ease;
+        position: relative;
+        cursor: pointer;
+      }
+      .svc-card:hover {
+        background: var(--bg-dark);
+        color: #fff;
+        transform: scale(1.02);
+        z-index: 2;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+      }
+      .svc-card:hover .svc-num,
+      .svc-card:hover .svc-arrow {
+        color: var(--gold-light);
+      }
+      .svc-card:hover .svc-desc {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .svc-card:hover .svc-tags span {
+        border-color: rgba(184, 153, 104, 0.5);
+        color: var(--gold-light);
+      }
+      .svc-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 16px;
+        color: var(--gold-deep);
+        letter-spacing: 0.2em;
+        margin-bottom: 24px;
+        display: block;
+        transition: color 0.3s;
+      }
+      .svc-title {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        letter-spacing: -0.02em;
+        line-height: 1.4;
+      }
+      .svc-desc {
+        font-size: 14px;
+        color: var(--text-soft);
+        line-height: 1.85;
+        margin-bottom: 24px;
+        transition: color 0.3s;
+      }
+      .svc-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .svc-tags span {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        padding: 5px 11px;
+        border: 1px solid var(--line);
+        color: var(--text-mute);
+        transition: all 0.3s;
+      }
+      .svc-arrow {
+        position: absolute;
+        top: 56px;
+        right: 40px;
+        font-size: 20px;
+        color: var(--text-mute);
+        transition: all 0.3s;
+      }
+
+      /* === PROCESS === */
+      .process {
+        background: var(--bg-dark);
+        color: #fff;
+        position: relative;
+      }
+      .process::before {
+        content: 'PROCESS';
+        position: absolute;
+        top: 60px;
+        right: 40px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 180px;
+        font-weight: 700;
+        color: rgba(184, 153, 104, 0.04);
+        line-height: 1;
+        letter-spacing: -0.03em;
+        pointer-events: none;
+      }
+      .process .section-title {
+        color: #fff;
+      }
+      .process .section-eyebrow {
+        color: var(--gold-light);
+      }
+      .process .section-eyebrow::before,
+      .process .section-eyebrow::after {
+        color: var(--gold);
+      }
+      .process .section-sub {
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .proc-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        position: relative;
+        z-index: 2;
+      }
+      .proc-step {
+        position: relative;
+        padding: 36px 28px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.02);
+        transition: all 0.3s;
+      }
+      .proc-step:hover {
+        border-color: var(--gold);
+        background: rgba(184, 153, 104, 0.04);
+        transform: translateY(-6px);
+      }
+      .proc-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 64px;
+        font-weight: 600;
+        color: var(--gold);
+        line-height: 1;
+        margin-bottom: 22px;
+      }
+      .proc-title {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        letter-spacing: -0.02em;
+      }
+      .proc-desc {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.8;
+      }
+      .proc-time {
+        display: inline-block;
+        margin-top: 18px;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        color: var(--gold-light);
+        padding-top: 14px;
+        border-top: 1px solid rgba(184, 153, 104, 0.2);
+        width: 100%;
+      }
+
+      /* === WHY === */
+      .why {
+        background: #fff;
+      }
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+      .why-card {
+        text-align: center;
+        padding: 50px 30px;
+        border: 1px solid var(--line);
+        background: #fff;
+        transition: all 0.3s;
+      }
+      .why-card:hover {
+        border-color: var(--gold);
+        box-shadow: 0 20px 50px rgba(184, 153, 104, 0.1);
+      }
+      .why-ico {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 28px;
+        border: 1px solid var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-family: 'Cormorant Garamond', serif;
+        color: var(--gold-deep);
+        font-size: 28px;
+        font-weight: 600;
+      }
+      .why-title {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        letter-spacing: -0.02em;
+      }
+      .why-desc {
+        color: var(--text-soft);
+        font-size: 14px;
+        line-height: 1.85;
+      }
+
+      /* === CASES === */
+      .cases {
+        background: var(--bg-soft);
+      }
+      .case-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+      .case-card {
+        background: #fff;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        transition: all 0.3s;
+      }
+      .case-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+        border-color: var(--gold);
+      }
+      .case-thumb {
+        aspect-ratio: 16/10;
+        background: linear-gradient(135deg, #1a1a1c, #0e0e10);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .case-thumb .case-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 120px;
+        font-weight: 600;
+        color: rgba(184, 153, 104, 0.4);
+        letter-spacing: -0.04em;
+      }
+      .case-thumb .case-tag {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 6px 14px;
+        background: var(--gold);
+        color: #fff;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        font-weight: 600;
+      }
+      .case-body {
+        padding: 32px 28px;
+      }
+      .case-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--text-mute);
+        letter-spacing: 0.05em;
+        margin-bottom: 14px;
+      }
+      .case-title {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 19px;
+        font-weight: 700;
+        line-height: 1.5;
+        letter-spacing: -0.02em;
+        margin-bottom: 14px;
+      }
+      .case-excerpt {
+        font-size: 14px;
+        color: var(--text-soft);
+        line-height: 1.8;
+      }
+      .case-result {
+        margin-top: 20px;
+        padding-top: 18px;
+        border-top: 1px dashed var(--line);
+        font-size: 13px;
+      }
+      .case-result strong {
+        color: var(--gold-deep);
+        letter-spacing: 0.05em;
+      }
+
+      /* === FAQ === */
+      .faq {
+        background: #fff;
+      }
+      .faq-list {
+        max-width: 880px;
+        margin: 0 auto;
+      }
+      .faq-item {
+        border-bottom: 1px solid var(--line);
+      }
+      .faq-q {
+        width: 100%;
+        text-align: left;
+        padding: 32px 0;
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        transition: color 0.2s;
+      }
+      .faq-q:hover {
+        color: var(--gold-deep);
+      }
+      .faq-q .q-mark {
+        font-family: 'Cormorant Garamond', serif;
+        color: var(--gold-deep);
+        font-size: 24px;
+        margin-right: 16px;
+        font-weight: 700;
+      }
+      .faq-q .q-text {
+        flex: 1;
+      }
+      .faq-q .q-toggle {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        border: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        color: var(--text-soft);
+        border-radius: 50%;
+        transition: all 0.3s;
+      }
+      .faq-item.open .q-toggle {
+        background: var(--gold);
+        color: #fff;
+        border-color: var(--gold);
+        transform: rotate(45deg);
+      }
+      .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s ease,
+          padding 0.4s ease;
+        color: var(--text-soft);
+        font-size: 15px;
+        line-height: 1.9;
+        padding: 0 0 0 44px;
+      }
+      .faq-item.open .faq-a {
+        max-height: 400px;
+        padding: 0 0 32px 44px;
+      }
+
+      /* === FINAL CTA === */
+      .cta-final {
+        background: var(--bg-darker);
+        color: #fff;
+        text-align: center;
+        padding: 120px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-final::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(184, 153, 104, 0.12) 0%,
+          transparent 70%
+        );
+      }
+      .cta-final-inner {
+        position: relative;
+        z-index: 2;
+      }
+      .cta-final .section-eyebrow {
+        color: var(--gold-light);
+      }
+      .cta-final .section-eyebrow::before,
+      .cta-final .section-eyebrow::after {
+        color: var(--gold);
+      }
+      .cta-final h2 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: clamp(28px, 4vw, 50px);
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: -0.025em;
+        margin: 18px 0 24px;
+      }
+      .cta-final h2 .gold {
+        color: var(--gold-light);
+      }
+      .cta-final p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 17px;
+        line-height: 1.85;
+        margin-bottom: 50px;
+      }
+      .cta-final .cta-row {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .cta-tel-big {
+        margin-bottom: 32px;
+      }
+      .cta-tel-big a {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(40px, 5vw, 64px);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--gold-light);
+      }
+      .cta-tel-big small {
+        display: block;
+        font-size: 12px;
+        letter-spacing: 0.3em;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 8px;
+        font-family: 'Pretendard', sans-serif;
+      }
+
+      /* === FOOTER === */
+      footer {
+        background: #050507;
+        color: rgba(255, 255, 255, 0.5);
+        padding: 70px 0 30px;
+        font-size: 13px;
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 40px;
+        padding-bottom: 50px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        margin-bottom: 30px;
+      }
+      .footer-logo .logo-mark {
+        font-size: 36px;
+      }
+      .footer-logo .logo-text {
+        display: block;
+        margin-top: 6px;
+      }
+      .footer-tagline {
+        margin: 20px 0 16px;
+        font-size: 13px;
+        line-height: 1.85;
+        color: rgba(255, 255, 255, 0.5);
+        max-width: 380px;
+      }
+      .footer-biz {
+        font-size: 11px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.04em;
+        padding-top: 14px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        max-width: 380px;
+      }
+      .footer-col h4 {
+        color: var(--gold-light);
+        font-size: 12px;
+        letter-spacing: 0.25em;
+        margin-bottom: 18px;
+        font-weight: 600;
+      }
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col ul li {
+        margin-bottom: 10px;
+        line-height: 1.7;
+      }
+      .footer-col a:hover {
+        color: var(--gold-light);
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.35);
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .footer-bottom .legal {
+        line-height: 1.8;
+        max-width: 720px;
+      }
+
+      /* === FLOATING SIDE CTA === */
+      .float-cta {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 90;
+      }
+      .float-btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 22px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        transition: transform 0.2s;
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 700;
+      }
+      .float-btn:hover {
+        transform: scale(1.08);
+      }
+      .float-btn.tel {
+        background: var(--gold);
+      }
+      .float-btn.kakao {
+        background: #fee500;
+        color: #3c1e1e;
+      }
+      .float-btn.tel-label {
+        width: auto;
+        height: 60px;
+        padding: 0 22px;
+        border-radius: 30px;
+        font-size: 16px;
+        letter-spacing: 0.02em;
+        font-family: 'Cormorant Garamond', serif;
+        background: var(--bg-dark);
+        border: 1px solid var(--gold);
+        color: var(--gold-light);
+      }
+
+      /* === CERT BADGE (HERO) === */
+      .cert-badge-row {
+        margin: -8px 0 28px;
+      }
+      .cert-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 22px 12px 18px;
+        background: linear-gradient(
+          135deg,
+          rgba(184, 153, 104, 0.16),
+          rgba(184, 153, 104, 0.04)
+        );
+        border: 1px solid rgba(184, 153, 104, 0.45);
+        border-radius: 2px;
+      }
+      .cert-badge-mark {
+        font-size: 20px;
+        color: var(--gold-light);
+        line-height: 1;
+        text-shadow: 0 0 12px rgba(184, 153, 104, 0.5);
+      }
+      .cert-badge strong {
+        display: block;
+        color: var(--gold-light);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        line-height: 1.3;
+      }
+      .cert-badge small {
+        display: block;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        margin-top: 3px;
+      }
+
+      /* === TRUST CERT CELL === */
+      .trust-num-cert {
+        font-family: 'Noto Serif KR', serif !important;
+        font-size: 50px !important;
+        font-weight: 700 !important;
+      }
+      .trust-num-cert small {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 24px !important;
+      }
+      .trust-cell-cert {
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgba(184, 153, 104, 0.06)
+        );
+        position: relative;
+      }
+      .trust-cell-cert::before {
+        content: 'CERTIFIED';
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--gold);
+        color: #fff;
+        font-size: 9px;
+        letter-spacing: 0.25em;
+        padding: 3px 10px;
+      }
+
+      /* === CERT STRIP (ABOUT) === */
+      .cert-strip {
+        margin-top: 32px;
+        padding: 24px 26px;
+        background: #fff;
+        border: 1px solid var(--gold);
+        border-left: 4px solid var(--gold);
+        position: relative;
+      }
+      .cert-strip-title {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+        letter-spacing: -0.01em;
+      }
+      .cert-strip-mark {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        color: #fff;
+        background: var(--gold-deep);
+        padding: 4px 10px;
+      }
+      .cert-list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px 18px;
+        margin: 0;
+        padding: 0;
+      }
+      .cert-list li {
+        font-size: 14px;
+        color: var(--text);
+        padding-left: 18px;
+        position: relative;
+      }
+      .cert-list li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--gold-deep);
+        font-weight: 700;
+      }
+      .cert-note {
+        margin-top: 14px !important;
+        padding-top: 14px;
+        border-top: 1px dashed var(--line);
+        font-size: 12px !important;
+        color: var(--text-mute) !important;
+        line-height: 1.7 !important;
+      }
+
+      /* === WHY CARD FEATURE === */
+      .why-card-feature {
+        background: linear-gradient(180deg, #fff, var(--bg-soft));
+        border-color: var(--gold) !important;
+        border-width: 2px !important;
+        position: relative;
+      }
+      .why-card-feature::before {
+        content: 'SIGNATURE';
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--gold-deep);
+        color: #fff;
+        font-size: 10px;
+        letter-spacing: 0.25em;
+        padding: 4px 14px;
+        font-weight: 600;
+      }
+      .why-card-feature .why-ico {
+        background: var(--gold);
+        color: #fff;
+        border-color: var(--gold);
+        font-size: 26px;
+      }
+
+      /* === CTA SUB TEL === */
+      .cta-tel-sub {
+        margin-top: 16px;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .cta-tel-sub a {
+        color: var(--gold-light);
+        font-weight: 600;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 18px;
+        letter-spacing: 0.05em;
+        margin-left: 4px;
+      }
+      .cta-tel-sub a:hover {
+        color: #fff;
+      }
+
+      /* === TELEGRAM === */
+      .btn-telegram {
+        border-color: rgba(42, 170, 226, 0.6) !important;
+        color: #59c0ec !important;
+      }
+      .btn-telegram:hover {
+        border-color: #2aaae2 !important;
+        color: #2aaae2 !important;
+      }
+      .float-btn.telegram {
+        background: #2aaae2;
+        color: #fff;
+        font-size: 24px;
+        font-family: 'Pretendard', sans-serif;
+        font-weight: 400;
+      }
+
+      /* === FOOTER LINK STYLE === */
+      .footer-col ul li a {
+        color: rgba(255, 255, 255, 0.75);
+        transition: color 0.2s;
+      }
+      .footer-col ul li a:hover {
+        color: var(--gold-light);
+      }
+
+      /* === ABOUT VISUAL CERT IMG === */
+      .about-visual-cert {
+        background: linear-gradient(135deg, #1f1d18 0%, #0e0e10 100%);
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+      }
+      .about-cert-img {
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow:
+          0 12px 40px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(184, 153, 104, 0.3);
+        transform: rotate(-2deg);
+        transition: transform 0.4s ease;
+      }
+      .about-cert-img:hover {
+        transform: rotate(0deg) scale(1.02);
+      }
+      .about-visual-cert .about-visual-caption {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 12px;
+        letter-spacing: 0.15em;
+        text-align: center;
+        line-height: 1.7;
+      }
+      .about-caption-tag {
+        display: inline-block;
+        margin-right: 8px;
+        background: var(--gold);
+        color: #fff;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        padding: 3px 10px;
+      }
+      .about-visual-cert.about-visual-fallback::before,
+      .about-visual-cert.about-visual-fallback::after {
+        display: none;
+      }
+
+      /* fallback when image missing */
+      .about-visual-cert:not(:has(img[src])) {
+        /* let the default 'SJ' overlay show via about-visual fallback */
+      }
+
+      /* === CERT LIST (PEOPLE) === */
+      .cert-list-people {
+        grid-template-columns: 1fr 1fr;
+      }
+      .cert-list-people li {
+        padding: 8px 0 8px 18px;
+      }
+      .cert-list-people li strong {
+        display: block;
+        font-size: 14px;
+        color: var(--text);
+      }
+      .cert-list-people li span {
+        display: block;
+        font-size: 11px;
+        color: var(--text-mute);
+        letter-spacing: 0.05em;
+        margin-top: 2px;
+      }
+
+      /* === CREDENTIALS SECTION === */
+      .credentials {
+        background: var(--bg-soft);
+        position: relative;
+      }
+      .credentials .section-title {
+        color: var(--text);
+      }
+      .cred-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        margin-bottom: 60px;
+      }
+      .cred-card {
+        margin: 0;
+        background: #fff;
+        border: 1px solid var(--line);
+        padding: 18px;
+        transition: all 0.3s;
+      }
+      .cred-card:hover {
+        border-color: var(--gold);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        transform: translateY(-4px);
+      }
+      .cred-img-wrap {
+        position: relative;
+        background: linear-gradient(135deg, #f1ede5, #e8e2d4);
+        overflow: hidden;
+        aspect-ratio: 1/1.2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cred-card-id .cred-img-wrap {
+        aspect-ratio: 1.6/1;
+      }
+      .cred-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background: #fff;
+      }
+      .cred-img-fallback {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        color: var(--gold-deep);
+        font-family: 'Noto Serif KR', serif;
+      }
+      .cred-fallback-mark {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+      .cred-fallback-sub {
+        font-size: 14px;
+        letter-spacing: 0.15em;
+        color: var(--text-mute);
+      }
+      /* image present → hide fallback */
+      .cred-img-wrap:not(.cred-img-missing) .cred-img-fallback {
+        display: none;
+      }
+      .cred-card figcaption {
+        padding-top: 16px;
+        text-align: center;
+      }
+      .cred-card figcaption strong {
+        display: block;
+        font-family: 'Noto Serif KR', serif;
+        font-size: 15px;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .cred-card figcaption span {
+        font-size: 12px;
+        color: var(--text-mute);
+        letter-spacing: 0.04em;
+      }
+
+      /* === CREDENTIALS BUSINESS BLOCK === */
+      .cred-business {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 50px;
+        align-items: center;
+        background: #fff;
+        padding: 50px;
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--gold);
+      }
+      .cred-biz-card {
+        margin: 0;
+      }
+      .cred-biz-card .cred-img-wrap {
+        aspect-ratio: 0.72/1;
+        background: linear-gradient(135deg, #f4f1e8, #e8e2d4);
+      }
+      .cred-biz-text .cred-biz-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 14px;
+        letter-spacing: 0.3em;
+        color: var(--gold-deep);
+        margin-bottom: 12px;
+      }
+      .cred-biz-text h3 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 24px;
+      }
+      .cred-biz-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px;
+        display: grid;
+        gap: 10px;
+      }
+      .cred-biz-list li {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        align-items: baseline;
+        padding: 10px 0;
+        border-bottom: 1px dashed var(--line);
+        font-size: 14px;
+      }
+      .cred-biz-list li span {
+        color: var(--text-mute);
+        font-size: 12px;
+        letter-spacing: 0.1em;
+      }
+      .cred-biz-list li strong {
+        color: var(--text);
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .cred-biz-note {
+        font-size: 12px !important;
+        color: var(--text-mute) !important;
+        line-height: 1.8 !important;
+        margin: 0 !important;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+      }
+
+      /* === RESPONSIVE === */
+      @media (max-width: 960px) {
+        .cred-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .cred-business {
+          grid-template-columns: 1fr;
+          padding: 32px;
+          gap: 32px;
+        }
+        .cred-biz-list li {
+          grid-template-columns: 120px 1fr;
+        }
+      }
+      @media (max-width: 540px) {
+        .cred-grid {
+          grid-template-columns: 1fr;
+        }
+        .cred-business {
+          padding: 24px;
+        }
+        .cred-biz-list li {
+          grid-template-columns: 1fr;
+          gap: 4px;
+        }
+      }
+
+      /* === TOAST === */
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 40px;
+        transform: translate(-50%, 30px);
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 24px;
+        background: var(--bg-darker);
+        border: 1px solid var(--gold);
+        border-radius: 4px;
+        box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+        max-width: calc(100% - 32px);
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translate(-50%, 0);
+        pointer-events: auto;
+      }
+      .toast-mark {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--gold);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .toast-text strong {
+        display: block;
+        color: var(--gold-light);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .toast-text span {
+        display: block;
+        margin-top: 2px;
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      /* === KAKAO COPY BUTTON === */
+      .btn-kakao-copy {
+        background: #fee500 !important;
+        color: #3c1e1e !important;
+        box-shadow: 0 8px 24px rgba(254, 229, 0, 0.3) !important;
+        font-family: 'Pretendard', sans-serif;
+        font-weight: 700 !important;
+      }
+      .btn-kakao-copy:hover {
+        background: #ffd400 !important;
+        color: #3c1e1e !important;
+      }
+
+      /* === ABOUT CERT PORTRAIT (인물 사진 모드) === */
+      .about-cert-portrait {
+        max-width: 100% !important;
+        width: 100% !important;
+        aspect-ratio: 4/5;
+        object-fit: cover;
+        border-radius: 4px;
+        transform: none !important;
+        box-shadow:
+          0 24px 60px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(184, 153, 104, 0.35);
+      }
+      .about-cert-portrait:hover {
+        transform: scale(1.01) !important;
+      }
+      .about-visual-cert:has(.about-cert-portrait) {
+        padding: 0;
+        background: #0a0a0c;
+      }
+      /* cert 모드: 풀배경 SJ/EST.2005 텍스트 무조건 숨김 */
+      .about-visual-cert::before,
+      .about-visual-cert::after {
+        display: none !important;
+        content: none !important;
+      }
+      .about-visual-cert:has(.about-cert-portrait) .about-visual-caption {
+        position: absolute;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(5, 5, 7, 0.85);
+        backdrop-filter: blur(8px);
+        padding: 12px 22px;
+        border: 1px solid rgba(184, 153, 104, 0.4);
+        color: #fff;
+        white-space: nowrap;
+      }
+
+      /* === TEAM SECTION === */
+      .team {
+        background: #fff;
+        position: relative;
+      }
+      .team::before {
+        content: 'TEAM';
+        position: absolute;
+        top: 80px;
+        right: -10px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 200px;
+        font-weight: 700;
+        color: rgba(184, 153, 104, 0.05);
+        line-height: 1;
+        letter-spacing: -0.04em;
+        pointer-events: none;
+      }
+      .team-hero {
+        position: relative;
+        margin-bottom: 60px;
+        overflow: hidden;
+        aspect-ratio: 16/8;
+        background: #0e0e10;
+      }
+      .team-hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 30%;
+        filter: contrast(1.05) saturate(0.95);
+      }
+      .team-hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(5, 5, 7, 0) 40%,
+          rgba(5, 5, 7, 0.85) 100%
+        );
+        pointer-events: none;
+      }
+      .team-hero-overlay {
+        position: absolute;
+        left: 50px;
+        bottom: 44px;
+        z-index: 2;
+        color: #fff;
+      }
+      .team-hero-tag {
+        display: inline-block;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 12px;
+        letter-spacing: 0.35em;
+        color: var(--gold-light);
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--gold);
+      }
+      .team-hero-overlay h3 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: clamp(20px, 2.6vw, 34px);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.3;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        position: relative;
+        z-index: 2;
+      }
+      .team-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        padding: 44px 40px;
+        position: relative;
+        transition: all 0.3s;
+      }
+      .team-card:hover {
+        border-color: var(--gold);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+        transform: translateY(-4px);
+      }
+      .team-card-num {
+        position: absolute;
+        top: 28px;
+        right: 36px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 18px;
+        color: var(--gold-deep);
+        letter-spacing: 0.2em;
+      }
+      .team-role {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 12px;
+        letter-spacing: 0.3em;
+        color: var(--gold-deep);
+        margin-bottom: 12px;
+      }
+      .team-name {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+        margin-bottom: 22px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid var(--line);
+      }
+      .team-name small {
+        display: block;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--text-mute);
+        letter-spacing: 0.2em;
+        margin-top: 6px;
+      }
+      .team-meta {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 22px;
+        display: grid;
+        gap: 8px;
+      }
+      .team-meta li {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        align-items: baseline;
+        font-size: 13px;
+        padding: 6px 0;
+      }
+      .team-meta li span {
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        color: var(--text-mute);
+      }
+      .team-meta li strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .team-desc {
+        font-size: 14px;
+        color: var(--text-soft);
+        line-height: 1.9;
+        margin: 0;
+      }
+
+      .team-pledge {
+        margin-top: 60px;
+        padding: 40px;
+        background: var(--bg-soft);
+        border-left: 4px solid var(--gold);
+        position: relative;
+        text-align: center;
+      }
+      .team-pledge-mark {
+        position: absolute;
+        top: 4px;
+        left: 26px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 80px;
+        color: var(--gold);
+        line-height: 1;
+        opacity: 0.5;
+      }
+      .team-pledge p {
+        font-family: 'Noto Serif KR', serif;
+        font-size: clamp(15px, 1.6vw, 19px);
+        color: var(--text);
+        line-height: 1.8;
+        letter-spacing: -0.01em;
+        margin: 0;
+      }
+
+      @media (max-width: 960px) {
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+        .team-hero {
+          aspect-ratio: 4/3;
+        }
+        .team-hero-overlay {
+          left: 24px;
+          bottom: 24px;
+        }
+        .team-pledge {
+          padding: 32px 24px;
+        }
+      }
+
+      /* ============================================
+         === MOBILE OPTIMIZATION (종합) ===
+         ============================================ */
+      @media (max-width: 960px) {
+        /* --- Mobile nav slide-in --- */
+        header nav {
+          position: fixed;
+          top: 78px;
+          left: 0;
+          right: 0;
+          background: rgba(5, 5, 7, 0.98);
+          backdrop-filter: blur(12px);
+          border-top: 1px solid rgba(184, 153, 104, 0.15);
+          border-bottom: 1px solid rgba(184, 153, 104, 0.15);
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.35s ease;
+          z-index: 99;
+        }
+        body.nav-open header nav {
+          max-height: 80vh;
+          overflow-y: auto;
+        }
+        header nav ul {
+          display: flex !important;
+          flex-direction: column;
+          gap: 0;
+          padding: 12px 24px 24px;
+        }
+        header nav ul li {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        header nav ul li:last-child {
+          border-bottom: none;
+        }
+        header nav ul a {
+          display: block;
+          padding: 16px 4px;
+          font-size: 15px;
+          letter-spacing: 0.08em;
+        }
+
+        /* --- Hero --- */
+        .hero {
+          min-height: auto;
+          padding: 110px 0 70px;
+        }
+        .hero h1 {
+          font-size: 32px !important;
+          line-height: 1.3;
+        }
+        .hero-sub {
+          font-size: 14px;
+          line-height: 1.8;
+          margin-bottom: 36px;
+        }
+        .hero-eyebrow {
+          font-size: 11px;
+          letter-spacing: 0.2em;
+          margin-bottom: 20px;
+        }
+        .hero-eyebrow::before {
+          width: 28px;
+        }
+        .cert-badge {
+          display: flex;
+          gap: 12px;
+          padding: 12px 16px;
+          align-items: flex-start;
+        }
+        .cert-badge-mark {
+          font-size: 18px;
+          margin-top: 2px;
+        }
+        .cert-badge strong {
+          font-size: 13px;
+          line-height: 1.4;
+        }
+        .cert-badge small {
+          font-size: 10px;
+          letter-spacing: 0.08em;
+        }
+        .hero::after {
+          font-size: 220px;
+          right: -50px;
+          bottom: -50px;
+        }
+        .hero-scroll {
+          display: none;
+        }
+
+        /* --- Trust strip --- */
+        .trust {
+          padding: 36px 0;
+        }
+        .trust-num {
+          font-size: 38px !important;
+        }
+        .trust-num small {
+          font-size: 16px !important;
+        }
+        .trust-num-cert {
+          font-size: 36px !important;
+        }
+        .trust-num-cert small {
+          font-size: 18px !important;
+        }
+        .trust-label {
+          font-size: 11px;
+          letter-spacing: 0.1em;
+        }
+        .trust-cell {
+          padding: 16px 8px;
+        }
+        .trust-cell-cert::before {
+          font-size: 8px;
+          padding: 2px 8px;
+          top: -8px;
+        }
+
+        /* --- Section common --- */
+        .section-head {
+          margin-bottom: 50px;
+        }
+        .section-title {
+          font-size: 24px !important;
+          line-height: 1.4;
+        }
+        .section-sub {
+          font-size: 14px;
+          line-height: 1.8;
+        }
+        .section-eyebrow {
+          font-size: 11px;
+          letter-spacing: 0.25em;
+        }
+
+        /* --- About --- */
+        .about-visual {
+          aspect-ratio: 3/4;
+          max-height: 480px;
+        }
+        .about-cert-portrait {
+          aspect-ratio: 3/4 !important;
+        }
+        .about-text h2 {
+          font-size: 22px;
+          line-height: 1.5;
+        }
+        .about-text p {
+          font-size: 14px;
+          line-height: 1.85;
+        }
+        .about-text .sign {
+          margin-top: 28px;
+          padding-top: 22px;
+        }
+        .about-text .sign-name {
+          font-size: 18px;
+        }
+        .about-text .sign-en {
+          font-size: 26px;
+        }
+        .cert-strip {
+          padding: 20px 18px;
+        }
+        .cert-strip-title {
+          font-size: 14px;
+          flex-wrap: wrap;
+        }
+        .cert-list-people {
+          grid-template-columns: 1fr !important;
+          gap: 6px 0;
+        }
+        .cert-note {
+          font-size: 11px !important;
+        }
+
+        /* --- Services --- */
+        .svc-card {
+          padding: 40px 28px;
+        }
+        .svc-title {
+          font-size: 20px;
+        }
+        .svc-desc {
+          font-size: 13px;
+        }
+        .svc-arrow {
+          top: 40px;
+          right: 28px;
+        }
+
+        /* --- Process --- */
+        .process::before {
+          font-size: 120px;
+          top: 40px;
+        }
+        .proc-step {
+          padding: 28px 22px;
+        }
+        .proc-num {
+          font-size: 48px;
+          margin-bottom: 16px;
+        }
+        .proc-title {
+          font-size: 18px;
+        }
+
+        /* --- Why --- */
+        .why-card {
+          padding: 40px 24px;
+        }
+        .why-title {
+          font-size: 20px;
+        }
+        .why-card-feature::before {
+          font-size: 9px;
+          padding: 3px 12px;
+          top: -10px;
+        }
+
+        /* --- TEAM section --- */
+        .team::before {
+          display: none;
+        }
+        .team-hero {
+          aspect-ratio: 4/3;
+          margin-bottom: 36px;
+        }
+        .team-hero img {
+          object-position: center 25%;
+        }
+        .team-hero-overlay {
+          left: 20px;
+          right: 20px;
+          bottom: 20px;
+        }
+        .team-hero-tag {
+          font-size: 10px;
+          letter-spacing: 0.2em;
+          margin-bottom: 8px;
+        }
+        .team-hero-overlay h3 {
+          font-size: 17px;
+          line-height: 1.4;
+        }
+        .team-grid {
+          gap: 18px;
+        }
+        .team-card {
+          padding: 32px 26px;
+        }
+        .team-card-num {
+          top: 22px;
+          right: 26px;
+          font-size: 14px;
+        }
+        .team-role {
+          font-size: 11px;
+        }
+        .team-name {
+          font-size: 24px;
+          padding-bottom: 18px;
+          margin-bottom: 18px;
+        }
+        .team-name small {
+          font-size: 11px;
+        }
+        .team-meta li {
+          grid-template-columns: 70px 1fr;
+          font-size: 12px;
+          padding: 5px 0;
+        }
+        .team-meta li strong {
+          font-size: 13px;
+        }
+        .team-desc {
+          font-size: 13px;
+          line-height: 1.85;
+        }
+        .team-pledge {
+          margin-top: 40px;
+          padding: 28px 22px;
+        }
+        .team-pledge-mark {
+          font-size: 56px;
+          top: -4px;
+          left: 18px;
+        }
+        .team-pledge p {
+          font-size: 14px;
+          line-height: 1.75;
+        }
+
+        /* --- CREDENTIALS --- */
+        .credentials .section-title br {
+          display: none;
+        }
+        .cred-card {
+          padding: 14px;
+        }
+        .cred-card figcaption strong {
+          font-size: 13px;
+        }
+        .cred-card figcaption span {
+          font-size: 11px;
+        }
+        .cred-business {
+          padding: 28px 22px;
+          gap: 24px;
+        }
+        .cred-biz-card .cred-img-wrap {
+          aspect-ratio: 0.85/1;
+        }
+        .cred-biz-text h3 {
+          font-size: 20px;
+          margin-bottom: 18px;
+        }
+        .cred-biz-label {
+          font-size: 12px;
+          letter-spacing: 0.2em;
+        }
+        .cred-biz-list li {
+          grid-template-columns: 100px 1fr;
+          font-size: 13px;
+          padding: 8px 0;
+        }
+        .cred-biz-list li strong {
+          font-size: 13px;
+        }
+        .cred-biz-note {
+          font-size: 11px !important;
+        }
+
+        /* --- Cases --- */
+        .case-thumb .case-num {
+          font-size: 80px;
+        }
+        .case-thumb .case-tag {
+          font-size: 10px;
+          padding: 5px 12px;
+        }
+        .case-title {
+          font-size: 17px;
+        }
+        .case-body {
+          padding: 26px 22px;
+        }
+
+        /* --- FAQ --- */
+        .faq-q {
+          padding: 22px 0;
+          font-size: 15px;
+          gap: 14px;
+        }
+        .faq-q .q-mark {
+          font-size: 20px;
+          margin-right: 8px;
+        }
+        .faq-q .q-toggle {
+          width: 26px;
+          height: 26px;
+          font-size: 14px;
+        }
+        .faq-a {
+          font-size: 14px;
+          padding-left: 32px !important;
+        }
+        .faq-item.open .faq-a {
+          padding: 0 0 24px 32px !important;
+        }
+
+        /* --- Final CTA --- */
+        .cta-final {
+          padding: 80px 0;
+        }
+        .cta-final h2 {
+          font-size: 26px !important;
+          line-height: 1.45;
+        }
+        .cta-final p {
+          font-size: 14px;
+          margin-bottom: 36px;
+        }
+        .cta-tel-big a {
+          font-size: 38px !important;
+        }
+        .cta-tel-big small {
+          font-size: 11px;
+          letter-spacing: 0.2em;
+        }
+        .cta-tel-sub {
+          font-size: 13px;
+        }
+        .cta-tel-sub a {
+          font-size: 16px;
+        }
+        .cta-final .cta-row {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 10px;
+        }
+        .cta-final .cta-row .btn-primary,
+        .cta-final .cta-row .btn-ghost {
+          justify-content: center;
+          padding: 16px 20px;
+          font-size: 13px;
+        }
+
+        /* --- Footer --- */
+        footer {
+          padding: 50px 0 24px;
+        }
+        .footer-top {
+          padding-bottom: 36px;
+          margin-bottom: 22px;
+        }
+        .footer-tagline {
+          font-size: 13px;
+          margin: 16px 0 14px;
+        }
+        .footer-biz {
+          font-size: 10px;
+        }
+        .footer-col h4 {
+          font-size: 11px;
+          margin-bottom: 14px;
+        }
+        .footer-col ul li {
+          font-size: 12px;
+        }
+        .footer-bottom {
+          font-size: 10px;
+          gap: 16px;
+        }
+        .footer-bottom .legal {
+          line-height: 1.9;
+        }
+
+        /* --- Floating CTA --- */
+        .float-cta {
+          right: 16px;
+          bottom: 16px;
+          gap: 8px;
+        }
+        .float-btn {
+          width: 52px;
+          height: 52px;
+          font-size: 20px;
+        }
+        .float-btn.telegram {
+          font-size: 22px;
+        }
+
+        /* --- Toast --- */
+        .toast {
+          left: 16px;
+          right: 16px;
+          bottom: 88px;
+          transform: translateY(20px);
+          padding: 14px 18px;
+        }
+        .toast.show {
+          transform: translateY(0);
+        }
+        .toast-text strong {
+          font-size: 13px;
+        }
+        .toast-text span {
+          font-size: 11px;
+        }
+
+        /* --- Touch targets minimum 44px --- */
+        .btn-consult {
+          min-height: 38px;
+        }
+        .btn-primary,
+        .btn-ghost {
+          min-height: 48px;
+        }
+      }
+
+      /* === ULTRA-NARROW PHONES === */
+      @media (max-width: 480px) {
+        header .nav {
+          height: 64px;
+        }
+        header nav {
+          top: 64px;
+        }
+        .logo-mark {
+          font-size: 26px;
+        }
+        .logo-text {
+          font-size: 10px;
+          letter-spacing: 0.2em;
+        }
+        .header-cta .btn-consult {
+          padding: 9px 14px;
+          font-size: 11px;
+        }
+        .hero {
+          padding: 96px 0 56px;
+        }
+        .hero h1 {
+          font-size: 27px !important;
+        }
+        .hero-sub br {
+          display: none;
+        }
+        section.block {
+          padding: 70px 0;
+        }
+        .container {
+          padding: 0 20px;
+        }
+        .trust-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .trust-num {
+          font-size: 32px !important;
+        }
+        .cta-tel-big a {
+          font-size: 32px !important;
+        }
+        .team-meta li {
+          grid-template-columns: 1fr;
+          gap: 2px;
+          padding: 8px 0;
+        }
+        .cred-biz-list li {
+          grid-template-columns: 1fr;
+          gap: 3px;
+        }
+        .cred-biz-list li span {
+          font-size: 11px;
+        }
+      }
+
+      /* === RESPONSIVE (ORIGINAL) === */
+      @media (max-width: 960px) {
+        nav ul,
+        .header-cta .tel {
+          display: none;
+        }
+        .menu-toggle {
+          display: block;
+        }
+        section.block {
+          padding: 90px 0;
+        }
+        .about-wrap {
+          grid-template-columns: 1fr;
+          gap: 50px;
+        }
+        .about-visual {
+          aspect-ratio: 16/10;
+        }
+        .svc-grid {
+          grid-template-columns: 1fr;
+        }
+        .proc-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .why-grid,
+        .case-grid {
+          grid-template-columns: 1fr;
+        }
+        .trust-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .trust-cell:nth-child(2) {
+          border-right: none;
+        }
+        .trust-cell:nth-child(1),
+        .trust-cell:nth-child(2) {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          padding-bottom: 32px;
+          margin-bottom: 16px;
+        }
+        .footer-top {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .hero::after {
+          font-size: 280px;
+          right: -60px;
+        }
+        .float-btn.tel-label {
+          display: none;
+        }
+      }
+      @media (max-width: 540px) {
+        .hero-cta-row {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .btn-primary,
+        .btn-ghost {
+          justify-content: center;
+        }
+        .header-cta .btn-consult {
+          padding: 10px 16px;
+          font-size: 12px;
+        }
+        .proc-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ==================== HEADER ==================== -->
+    <header>
+      <div class="container nav">
+        <a href="#" class="logo">
+          <span class="logo-mark">SJ</span>
+          <span class="logo-text">DETECTIVE OFFICE</span>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="#about">소개</a></li>
+            <li><a href="#services">의뢰분야</a></li>
+            <li><a href="#process">진행절차</a></li>
+            <li><a href="#why">신뢰의 약속</a></li>
+            <li><a href="#team">팀</a></li>
+            <li><a href="#credentials">자격증</a></li>
+            <li><a href="#cases">해결사례</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <span class="tel">1644-1488</span>
+          <a href="#cta" class="btn-consult">무료상담</a>
+          <button
+            class="menu-toggle"
+            aria-label="메뉴 열기"
+            onclick="toggleMobileNav(this)"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-eyebrow">(SJ) 에스제이탐정사무소</div>
+        <div class="cert-badge-row">
+          <div class="cert-badge">
+            <span class="cert-badge-mark">★</span>
+            <div>
+              <strong>대표·총괄팀장 모두 탐정사 1급 정식 보유</strong>
+              <small>한국자격검정평가진흥원 · 등록번호 2023-003035</small>
+            </div>
+          </div>
+        </div>
+        <h1>
+          의심은 시간이 지날수록<br />
+          <span class="accent">확신</span>이 됩니다.<br />
+          <span class="gold serif-en">SJ</span>가 그 답을 가져옵니다.
+        </h1>
+        <p class="hero-sub">
+          말하지 못한 진실, 묻혀버린 흔적, 사라진 사람 ―<br />
+          <strong>탐정사 1급 자격증을 보유한 전문 조사관</strong>이 단 하나의
+          의뢰도 흘리지 않고 추적합니다.<br />
+          모든 상담은 <strong>완전한 비밀보장</strong> 아래 진행되며, 결과로만
+          증명합니다.
+        </p>
+        <div class="hero-cta-row">
+          <a href="#cta" class="btn-primary">무료상담 신청 →</a>
+          <a href="tel:1644-1488" class="btn-ghost">☎ 24시간 긴급전화</a>
+        </div>
+      </div>
+      <div class="hero-scroll">SCROLL</div>
+    </section>
+
+    <!-- ==================== TRUST STRIP ==================== -->
+    <section class="trust">
+      <div class="container">
+        <div class="trust-grid">
+          <div class="trust-cell">
+            <div class="trust-num">20<small>년</small></div>
+            <div class="trust-label">현장 경력</div>
+          </div>
+          <div class="trust-cell">
+            <div class="trust-num">8,400<small>+</small></div>
+            <div class="trust-label">누적 의뢰 건수</div>
+          </div>
+          <div class="trust-cell trust-cell-cert">
+            <div class="trust-num trust-num-cert">1<small>급</small></div>
+            <div class="trust-label">탐정사 자격증 정식 보유</div>
+          </div>
+          <div class="trust-cell">
+            <div class="trust-num">100<small>%</small></div>
+            <div class="trust-label">비밀유지 서약</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT ==================== -->
+    <section class="block about" id="about">
+      <div class="container about-wrap">
+        <div class="about-visual about-visual-cert">
+          <img
+            src="images/team-kim.jpg"
+            alt="SJ 탐정사무소 대표 김혁진"
+            class="about-cert-img about-cert-portrait"
+          />
+        </div>
+        <div class="about-text">
+          <div class="label">ABOUT SJ</div>
+          <h2>
+            단 하나의 원칙,<br />
+            <span style="color: var(--gold-deep)">"의뢰인의 진실만 본다."</span>
+          </h2>
+          <p>
+            (SJ)에스제이탐정사무소는
+            <strong>탐정사 1급 자격증을 정식 보유한 전문 조사관</strong>이 직접
+            운영하는 사무소입니다. 자격 없이 영업하는 일부 업체와 출발선부터
+            다릅니다.
+          </p>
+          <p>
+            대표 <strong>김혁진</strong>과 총괄팀장 <strong>신대현</strong>이
+            <em>둘 다 탐정사 1급</em> 자격을 보유하고 있으며, 모든 의뢰 접수와
+            보고서 인계까지 단 한 사람의 외부 노출도 허용하지 않는
+            <strong>1:1 비밀 전담</strong> 체계로 진행됩니다.
+          </p>
+          <p>
+            우리는 사건을 해결하지 않습니다 ― 우리는
+            <strong>의뢰인의 삶이 다음 단계로 나아갈 수 있는 근거</strong>를
+            만들어드립니다.
+          </p>
+          <div class="cert-strip">
+            <div class="cert-strip-title">
+              <span class="cert-strip-mark">CERTIFIED</span>
+              탐정사 1급 자격증 정식 보유
+            </div>
+            <ul class="cert-list cert-list-people">
+              <li>
+                <strong>대표 김혁진</strong>
+                <span>탐정사 1급 · 등록 2023-003035</span>
+              </li>
+              <li>
+                <strong>총괄팀장 신대현</strong>
+                <span>탐정사 1급 · 등록 2023-003035</span>
+              </li>
+            </ul>
+            <p class="cert-note">
+              ※ 한국자격검정평가진흥원(KLADI) 발급 정식 민간자격 · 자격기본법
+              시행령에 따라 등록된 자격증
+            </p>
+          </div>
+          <div class="sign">
+            <div class="sign-name">
+              대표 김혁진<small>CHIEF · KIM HYUKJIN</small>
+            </div>
+            <div class="sign-en">SJ.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SERVICES ==================== -->
+    <section class="block services" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">OUR SERVICES</div>
+          <h2 class="section-title">
+            말 못 할 사정이라면, <span class="gold">전부 맡기셔도 됩니다.</span>
+          </h2>
+          <p class="section-sub">
+            의심·실종·피해·배신 ― 어떤 상황이든 SJ는 합법의 테두리 안에서<br />
+            가장 정확한 사실관계를 가져옵니다.
+          </p>
+        </div>
+
+        <div class="svc-grid">
+          <div class="svc-card">
+            <span class="svc-num">01</span>
+            <span class="svc-arrow">→</span>
+            <h3 class="svc-title">배우자 행적 조사</h3>
+            <p class="svc-desc">
+              말 못 할 의심을 더 키우지 마세요. 일상 동선, 동행자 식별, 만남
+              장소까지 법적 증거가 될 수 있는 수준으로 기록합니다.
+            </p>
+            <div class="svc-tags">
+              <span>외도 의심</span><span>상간자 특정</span
+              ><span>이혼 증거</span>
+            </div>
+          </div>
+
+          <div class="svc-card">
+            <span class="svc-num">02</span>
+            <span class="svc-arrow">→</span>
+            <h3 class="svc-title">사람 찾기 · 소재 파악</h3>
+            <p class="svc-desc">
+              연락이 끊긴 가족, 잠적한 채무자, 오래된 첫사랑까지 ― 공공 기록과
+              현장 조사를 결합한 합법적 탐문으로 찾아냅니다.
+            </p>
+            <div class="svc-tags">
+              <span>가출인</span><span>채무자 소재</span><span>옛 지인</span>
+            </div>
+          </div>
+
+          <div class="svc-card">
+            <span class="svc-num">03</span>
+            <span class="svc-arrow">→</span>
+            <h3 class="svc-title">사기 피해 추적</h3>
+            <p class="svc-desc">
+              투자 사기, 보이스피싱, 중고거래 잠적 ― 사라진 돈의 흐름과 가해자의
+              실명·실거주지를 합법 범위 내에서 끝까지 추적합니다.
+            </p>
+            <div class="svc-tags">
+              <span>투자사기</span><span>로맨스스캠</span
+              ><span>채권회수 자료</span>
+            </div>
+          </div>
+
+          <div class="svc-card">
+            <span class="svc-num">04</span>
+            <span class="svc-arrow">→</span>
+            <h3 class="svc-title">기업 · 거래처 신용조사</h3>
+            <p class="svc-desc">
+              계약 전 상대 회사의 실체, 대표자의 평판, 재무 위험 신호를 미리
+              점검합니다. 한 번의 의뢰가 수억 원의 손실을 막습니다.
+            </p>
+            <div class="svc-tags">
+              <span>거래처 평판</span><span>산업스파이</span
+              ><span>내부 부정</span>
+            </div>
+          </div>
+
+          <div class="svc-card">
+            <span class="svc-num">05</span>
+            <span class="svc-arrow">→</span>
+            <h3 class="svc-title">자녀 · 청소년 안전</h3>
+            <p class="svc-desc">
+              학교폭력 가해자 특정, 등하굣길 미행자 확인, 이상 교우 관계 파악 ―
+              아이가 말하지 못하는 위협을 부모님 대신 확인해드립니다.
+            </p>
+            <div class="svc-tags">
+              <span>학폭 정황</span><span>스토커</span><span>가출 청소년</span>
+            </div>
+          </div>
+
+          <div class="svc-card">
+            <span class="svc-num">06</span>
+            <span class="svc-arrow">→</span>
+            <h3 class="svc-title">디지털 포렌식 · 평판조사</h3>
+            <p class="svc-desc">
+              삭제된 메시지 복원, 익명 악성 게시물 작성자 추적, 결혼·채용 전
+              신상 검증. 디지털 시대의 새로운 위협에 정확하게 대응합니다.
+            </p>
+            <div class="svc-tags">
+              <span>데이터 복원</span><span>악플 추적</span
+              ><span>결혼 전 검증</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROCESS ==================== -->
+    <section class="block process" id="process">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">HOW WE WORK</div>
+          <h2 class="section-title" style="color: #fff">
+            단순한 절차,
+            <span style="color: var(--gold-light)">철저한 보안.</span>
+          </h2>
+          <p class="section-sub">
+            접수부터 결과 보고까지 평균 7~14일, 모든 단계는 의뢰인 동의 아래
+            진행됩니다.
+          </p>
+        </div>
+
+        <div class="proc-grid">
+          <div class="proc-step">
+            <div class="proc-num">01</div>
+            <h3 class="proc-title">비밀 상담</h3>
+            <p class="proc-desc">
+              전화·카카오톡·방문 중 편한 방식으로 24시간 무료 상담. 신원 노출
+              없이 진행 가능합니다.
+            </p>
+            <div class="proc-time">평균 30분 이내</div>
+          </div>
+          <div class="proc-step">
+            <div class="proc-num">02</div>
+            <h3 class="proc-title">조사 설계 · 계약</h3>
+            <p class="proc-desc">
+              사안에 맞는 조사 범위·기간·비용을 명확히 산정한 서면 계약. 추가
+              비용 청구는 없습니다.
+            </p>
+            <div class="proc-time">1일 이내 확정</div>
+          </div>
+          <div class="proc-step">
+            <div class="proc-num">03</div>
+            <h3 class="proc-title">전담팀 투입</h3>
+            <p class="proc-desc">
+              사안에 따라 2~4인 전담팀이 현장에 투입. 진행 상황은 매일
+              의뢰인에게 직접 보고됩니다.
+            </p>
+            <div class="proc-time">7~14일 평균</div>
+          </div>
+          <div class="proc-step">
+            <div class="proc-num">04</div>
+            <h3 class="proc-title">결과 보고서 인계</h3>
+            <p class="proc-desc">
+              사진·영상·동선기록 등 증거자료를 법적 활용이 가능한 보고서 형태로
+              봉인 인계.
+            </p>
+            <div class="proc-time">조사 종료 즉시</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== WHY ==================== -->
+    <section class="block why" id="why">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">WHY SJ</div>
+          <h2 class="section-title">
+            왜 의뢰인은 <span class="gold">SJ만 다시 찾을까요?</span>
+          </h2>
+        </div>
+
+        <div class="why-grid">
+          <div class="why-card why-card-feature">
+            <div class="why-ico">★</div>
+            <h3 class="why-title">대표 · 총괄팀장<br />모두 탐정사 1급</h3>
+            <p class="why-desc">
+              대표 김혁진·총괄팀장 신대현
+              <strong>전원 탐정사 1급 자격증 정식 보유</strong>.
+              한국자격검정평가진흥원 발급, 자격기본법 시행령에 따라 등록된
+              자격증입니다. 자격 미보유 업체와는 출발선이 다릅니다.
+            </p>
+          </div>
+          <div class="why-card">
+            <div class="why-ico">ii</div>
+            <h3 class="why-title">의뢰인 단 1명만 압니다</h3>
+            <p class="why-desc">
+              접수·진행·종결 모든 기록은 암호화 보관. 의뢰인의 동의 없이는 단 한
+              줄도 외부로 유출되지 않습니다.
+            </p>
+          </div>
+          <div class="why-card">
+            <div class="why-ico">iii</div>
+            <h3 class="why-title">불성과 시 100% 환불</h3>
+            <p class="why-desc">
+              계약서에 명시된 목표를 달성하지 못한 경우, 착수금을 제외한 잔여
+              비용은 전액 환불해 드립니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== OUR TEAM ==================== -->
+    <section class="block team" id="team">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">OUR TEAM</div>
+          <h2 class="section-title">
+            의뢰는 사람이 합니다.<br />
+            <span class="gold">사람을, 먼저 보여드립니다.</span>
+          </h2>
+          <p class="section-sub">
+            얼굴을 드러내지 못하는 업체에 인생의 가장 어려운 질문을
+            맡기시겠습니까? <br />
+            SJ는 사무소의 얼굴을 먼저 공개합니다.
+          </p>
+        </div>
+
+        <div class="team-hero">
+          <img
+            src="images/team-duo.jpg"
+            alt="SJ 탐정사무소 대표 김혁진 · 총괄팀장 신대현"
+            onerror="this.style.display = 'none'"
+          />
+          <div class="team-hero-overlay">
+            <span class="team-hero-tag">SJ DETECTIVE OFFICE</span>
+            <h3>탐정사 1급, 두 사람이 함께 합니다.</h3>
+          </div>
+        </div>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-card-num">01</div>
+            <div class="team-card-body">
+              <div class="team-role">CHIEF · 대표</div>
+              <h3 class="team-name">김혁진<small>KIM HYUKJIN</small></h3>
+              <ul class="team-meta">
+                <li><span>자격</span><strong>탐정사 1급 자격증</strong></li>
+                <li>
+                  <span>발급</span><strong>한국자격검정평가진흥원</strong>
+                </li>
+                <li><span>등록번호</span><strong>2023-003035</strong></li>
+              </ul>
+              <p class="team-desc">
+                의뢰 접수부터 결과 보고까지 모든 사건의 최종 책임을 직접
+                맡습니다. 의뢰인의 신상은 단 한 줄도 외부에 노출되지 않도록,
+                사건 번호 관리 체계를 직접 운영합니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-card-num">02</div>
+            <div class="team-card-body">
+              <div class="team-role">CHIEF MANAGER · 총괄팀장</div>
+              <h3 class="team-name">신대현<small>SHIN DAEHYUN</small></h3>
+              <ul class="team-meta">
+                <li><span>자격</span><strong>탐정사 1급 자격증</strong></li>
+                <li>
+                  <span>발급</span><strong>한국자격검정평가진흥원</strong>
+                </li>
+                <li><span>등록번호</span><strong>2023-003035</strong></li>
+              </ul>
+              <p class="team-desc">
+                현장 조사 전반을 총괄합니다. 동선 분석·디지털 흔적 추적·증거
+                정리까지, 보고서가 법정에서 인정받을 수 있는 수준이 되도록
+                실무의 마지막 한 줄까지 직접 점검합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-pledge">
+          <span class="team-pledge-mark">"</span>
+          <p>
+            의뢰는 사건이 아니라 <strong>사람의 인생</strong>입니다.<br />
+            우리는 그 무게를 알기에, 얼굴을 먼저 보여드립니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CREDENTIALS ==================== -->
+    <section class="block credentials" id="credentials">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">OUR CREDENTIALS</div>
+          <h2 class="section-title">
+            <span class="gold">자격은 사진으로 증명합니다.</span>
+          </h2>
+          <p class="section-sub">
+            대표·총괄팀장 모두 한국자격검정평가진흥원에서 발급한
+            <strong>탐정사 1급</strong> 자격증을 정식 보유하고 있습니다.<br />
+            의뢰 전 사무소 방문 시 원본을 직접 확인하실 수 있습니다.
+          </p>
+        </div>
+
+        <div class="cred-grid">
+          <figure class="cred-card cred-card-paper">
+            <div class="cred-img-wrap">
+              <img
+                src="images/cert-paper-kim.jpg"
+                alt="탐정사 1급 자격증 - 대표 김혁진"
+                onerror="this.parentElement.classList.add('cred-img-missing')"
+              />
+              <div class="cred-img-fallback">
+                <span class="cred-fallback-mark">자격증</span>
+                <span class="cred-fallback-sub">탐정사 1급</span>
+              </div>
+            </div>
+            <figcaption>
+              <strong>탐정사 1급 자격증</strong>
+              <span>대표 김혁진 · 등록번호 2023-003035</span>
+            </figcaption>
+          </figure>
+
+          <figure class="cred-card cred-card-paper">
+            <div class="cred-img-wrap">
+              <img
+                src="images/cert-paper-shin.png"
+                alt="탐정사 1급 자격증 - 총괄팀장 신대현"
+                onerror="this.parentElement.classList.add('cred-img-missing')"
+              />
+              <div class="cred-img-fallback">
+                <span class="cred-fallback-mark">자격증</span>
+                <span class="cred-fallback-sub">탐정사 1급</span>
+              </div>
+            </div>
+            <figcaption>
+              <strong>탐정사 1급 자격증</strong>
+              <span>총괄팀장 신대현 · 등록번호 2023-003035</span>
+            </figcaption>
+          </figure>
+
+          <figure class="cred-card cred-card-id">
+            <div class="cred-img-wrap">
+              <img
+                src="images/cert-card-kim.png"
+                alt="탐정사 1급 자격카드 - 대표 김혁진"
+                onerror="this.parentElement.classList.add('cred-img-missing')"
+              />
+              <div class="cred-img-fallback">
+                <span class="cred-fallback-mark">ID 카드</span>
+                <span class="cred-fallback-sub">탐정사 1급</span>
+              </div>
+            </div>
+            <figcaption>
+              <strong>자격 ID 카드</strong>
+              <span>대표 김혁진</span>
+            </figcaption>
+          </figure>
+
+          <figure class="cred-card cred-card-id">
+            <div class="cred-img-wrap">
+              <img
+                src="images/cert-card-shin.png"
+                alt="탐정사 1급 자격카드 - 총괄팀장 신대현"
+                onerror="this.parentElement.classList.add('cred-img-missing')"
+              />
+              <div class="cred-img-fallback">
+                <span class="cred-fallback-mark">ID 카드</span>
+                <span class="cred-fallback-sub">탐정사 1급</span>
+              </div>
+            </div>
+            <figcaption>
+              <strong>자격 ID 카드</strong>
+              <span>총괄팀장 신대현</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="cred-business">
+          <figure class="cred-biz-card">
+            <div class="cred-img-wrap">
+              <img
+                src="images/business-registration.jpg"
+                alt="사업자등록증"
+                onerror="this.parentElement.classList.add('cred-img-missing')"
+              />
+              <div class="cred-img-fallback">
+                <span class="cred-fallback-mark">사업자</span>
+                <span class="cred-fallback-sub">등록증</span>
+              </div>
+            </div>
+          </figure>
+          <div class="cred-biz-text">
+            <div class="cred-biz-label">BUSINESS REGISTRATION</div>
+            <h3>국세청 등록 정식 사업자</h3>
+            <ul class="cred-biz-list">
+              <li><span>상호</span><strong>(SJ)에스제이탐정사무소</strong></li>
+              <li><span>대표자</span><strong>김혁진</strong></li>
+              <li><span>사업자등록번호</span><strong>702-22-02085</strong></li>
+              <li><span>업종</span><strong>탐정 및 조사 서비스업</strong></li>
+              <li>
+                <span>사업장</span
+                ><strong
+                  >경기도 고양시 일산서구 주엽로 150, 8층 806호
+                  (자유프라자)</strong
+                >
+              </li>
+            </ul>
+            <p class="cred-biz-note">
+              ※ 국세청에 정식 등록된 탐정 및 조사 서비스업 사업자입니다.
+              세금계산서 발행 가능, 모든 거래는 합법적 회계 처리 하에
+              진행됩니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CASES ==================== -->
+    <section class="block cases" id="cases">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">SOLVED CASES</div>
+          <h2 class="section-title">
+            의뢰인이 다시 일상으로<br />돌아간
+            <span class="gold">실제 사례들</span>
+          </h2>
+          <p class="section-sub">
+            의뢰인 보호를 위해 식별 가능한 정보는 모두 비식별 처리되었습니다.
+          </p>
+        </div>
+
+        <div class="case-grid">
+          <div class="case-card">
+            <div class="case-thumb">
+              <span class="case-tag">외도조사</span>
+              <span class="case-num">01</span>
+            </div>
+            <div class="case-body">
+              <div class="case-meta">
+                <span>40대 여성 의뢰인</span><span>조사 9일</span>
+              </div>
+              <h3 class="case-title">"3년간 의심해온 남편의 출장, 그 진실"</h3>
+              <p class="case-excerpt">
+                반복되는 지방 출장과 늦은 귀가. 의심은 컸지만 직접 확인할 방법이
+                없던 상황. 동선 분석과 숙박 기록 대조로 9일 만에 사실관계를
+                정리했습니다.
+              </p>
+              <div class="case-result">
+                <strong>RESULT —</strong> 위자료 청구 소송 증거 채택, 의뢰인
+                승소
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card">
+            <div class="case-thumb">
+              <span class="case-tag">사기추적</span>
+              <span class="case-num">02</span>
+            </div>
+            <div class="case-body">
+              <div class="case-meta">
+                <span>30대 남성 의뢰인</span><span>조사 14일</span>
+              </div>
+              <h3 class="case-title">
+                "2.8억 가상자산 사기, 도주범 실거주지 확보"
+              </h3>
+              <p class="case-excerpt">
+                경찰 신고만으로는 진척이 없던 케이스. 가상자산 지갑 흐름과 SNS
+                디지털 흔적을 교차 분석해 도주 중인 가해자의 실명과 거주지를
+                특정했습니다.
+              </p>
+              <div class="case-result">
+                <strong>RESULT —</strong> 경찰 수사 자료 제공, 피의자 검거 후
+                일부 변제
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card">
+            <div class="case-thumb">
+              <span class="case-tag">사람찾기</span>
+              <span class="case-num">03</span>
+            </div>
+            <div class="case-body">
+              <div class="case-meta">
+                <span>60대 남성 의뢰인</span><span>조사 21일</span>
+              </div>
+              <h3 class="case-title">
+                "30년 전 헤어진 친누나, 다시 마주한 자리"
+              </h3>
+              <p class="case-excerpt">
+                과거 거주지와 단편적 기억만으로 시작한 조사. 합법적 공공기록
+                열람과 지역 탐문을 거쳐 누나의 현재 거주지와 안부를
+                확인했습니다.
+              </p>
+              <div class="case-result">
+                <strong>RESULT —</strong> 의뢰인 동의 하 상봉 주선, 30년 만의
+                재회 성사
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FAQ ==================== -->
+    <section class="block faq" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">FREQUENTLY ASKED</div>
+          <h2 class="section-title">
+            의뢰 전, <span class="gold">가장 많이 묻는 질문</span>
+          </h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q">
+              <span class="q-mark">Q.</span
+              ><span class="q-text">상담만 받아봐도 비용이 발생하나요?</span
+              ><span class="q-toggle">+</span>
+            </button>
+            <div class="faq-a">
+              아니요. 모든 1차 상담은 100% 무료이며, 어떠한 조건도 없습니다.
+              상담만 받고 의뢰하지 않으셔도 됩니다. 다만 상담 내용은 그 자체로
+              외부 유출 없이 영구 폐기됩니다.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              <span class="q-mark">Q.</span
+              ><span class="q-text">의뢰인의 신원이 노출될 위험은 없나요?</span
+              ><span class="q-toggle">+</span>
+            </button>
+            <div class="faq-a">
+              계약 단계부터 결과 보고까지 모든 기록은 사건번호로만 관리되며,
+              담당 조사관 외 누구도 의뢰인의 실명을 알 수 없습니다. 보고서 인계
+              후 모든 데이터는 의뢰인 입회 하에 폐기됩니다.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              <span class="q-mark">Q.</span
+              ><span class="q-text"
+                >조사 결과가 법정에서 증거로 인정되나요?</span
+              ><span class="q-toggle">+</span>
+            </button>
+            <div class="faq-a">
+              SJ의 모든 조사는 탐정업법과 개인정보보호법을 준수하는 합법적
+              방식으로만 이루어집니다. 결과 보고서는 변호사 자문을 거쳐 법정
+              제출 가능한 형식으로 정리되며, 실제 다수의 민형사 소송에서 증거로
+              채택된 이력이 있습니다.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              <span class="q-mark">Q.</span
+              ><span class="q-text">비용은 어느 정도로 예상해야 하나요?</span
+              ><span class="q-toggle">+</span>
+            </button>
+            <div class="faq-a">
+              사안의 난이도, 기간, 투입 인력에 따라 다르지만 기본 외도조사는 약
+              200만 원대부터 시작합니다. 정확한 견적은 상담 후 산정해드리며,
+              계약서에 명시되지 않은 추가 청구는 일절 없습니다.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              <span class="q-mark">Q.</span
+              ><span class="q-text">조사가 실패하면 어떻게 되나요?</span
+              ><span class="q-toggle">+</span>
+            </button>
+            <div class="faq-a">
+              계약서에 명시된 목표 결과를 확보하지 못한 경우, 착수금을 제외한
+              잔여 의뢰 비용은 100% 환불합니다. 이는 계약서 본문에 별도 조항으로
+              명시됩니다.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              <span class="q-mark">Q.</span
+              ><span class="q-text">지방·해외에서도 의뢰 가능한가요?</span
+              ><span class="q-toggle">+</span>
+            </button>
+            <div class="faq-a">
+              전국 어디든 출동 가능하며, 별도의 출장비는 사안 규모에 따라 미리
+              견적에 포함됩니다. 해외 사안의 경우 현지 협력 네트워크를 통해 일부
+              국가에 한해 조사가 가능합니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FINAL CTA ==================== -->
+    <section class="cta-final" id="cta">
+      <div class="container cta-final-inner">
+        <div class="section-eyebrow">CONTACT SJ</div>
+        <h2>
+          오늘의 망설임이<br /><span class="gold">내일의 후회</span>가 되지
+          않도록.
+        </h2>
+        <p>
+          한 통의 통화로, 답을 미루던 모든 질문에 마침표를 찍을 수 있습니다.<br />
+          365일 24시간, SJ는 의뢰인의 전화를 기다립니다.
+        </p>
+
+        <div class="cta-tel-big">
+          <small>24/7 CONFIDENTIAL HOTLINE</small>
+          <a href="tel:1644-1488">1644 — 1488</a>
+          <div class="cta-tel-sub">
+            긴급 직통 · <a href="tel:010-8182-6634">010.8182.6634</a>
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <button
+            type="button"
+            class="btn-primary btn-kakao-copy"
+            onclick="copyKakaoId(event)"
+          >
+            카카오톡 ID 복사 · SJDT2 ⧉
+          </button>
+          <a
+            href="https://t.me/sjagency2"
+            target="_blank"
+            rel="noopener"
+            class="btn-ghost btn-telegram"
+          >
+            ✈ 텔레그램 @sjagency2
+          </a>
+          <a href="tel:1644-1488" class="btn-ghost">☎ 지금 바로 전화</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-logo">
+            <a href="#" class="logo">
+              <span class="logo-mark">SJ</span>
+              <span class="logo-text">DETECTIVE OFFICE</span>
+            </a>
+            <p class="footer-tagline">
+              의심을 확신으로, 침묵을 증거로. <br />
+              탐정사 1급 자격 보유 · 의뢰인의 진실만 봅니다.
+            </p>
+            <p class="footer-biz">
+              (SJ)에스제이탐정사무소 · 대표 김혁진<br />
+              사업자등록번호 702-22-02085
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>CONTACT</h4>
+            <ul>
+              <li>대표전화 · <a href="tel:1644-1488">1644-1488</a></li>
+              <li>긴급 직통 · <a href="tel:010-8182-6634">010.8182.6634</a></li>
+              <li>
+                카카오톡 ID ·
+                <a
+                  href="#"
+                  onclick="
+                    copyKakaoId(event);
+                    return false;
+                  "
+                  >SJDT2 ⧉</a
+                >
+              </li>
+              <li>
+                텔레그램 ·
+                <a href="https://t.me/sjagency2" target="_blank" rel="noopener"
+                  >@sjagency2</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>OFFICE</h4>
+            <ul>
+              <li>경기도 고양시 일산서구 주엽로 150</li>
+              <li>8층 806호 (주엽동, 자유프라자)</li>
+              <li>상담 가능 시간 · 24시간 / 연중무휴</li>
+              <li>한국자격검정평가진흥원 등록 정식 자격</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="legal">
+            © 2026 SJ Detective Office. All rights reserved. · 본 사이트의 모든
+            조사는 탐정업법 및 개인정보보호법을 준수합니다. · 의뢰 내용 및 결과
+            정보는 의뢰인 동의 없이 어떠한 경우에도 외부에 공개되지 않습니다.
+          </div>
+          <div>SJ · EST. 2005</div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ==================== FLOATING CTA ==================== -->
+    <div class="float-cta">
+      <a href="tel:1644-1488" class="float-btn tel-label">1644-1488</a>
+      <a
+        href="https://t.me/sjagency2"
+        target="_blank"
+        rel="noopener"
+        class="float-btn telegram"
+        title="텔레그램 @sjagency2"
+        >✈</a
+      >
+      <button
+        type="button"
+        class="float-btn kakao"
+        title="카카오톡 ID SJDT2 복사"
+        onclick="copyKakaoId(event)"
+      >
+        K
+      </button>
+      <a href="tel:1644-1488" class="float-btn tel" title="전화 상담">☎</a>
+    </div>
+
+    <!-- ==================== TOAST ==================== -->
+    <div id="toast" class="toast" role="status" aria-live="polite">
+      <span class="toast-mark">✓</span>
+      <div class="toast-text">
+        <strong>카카오톡 ID 복사됨</strong>
+        <span>SJDT2 — 카톡에서 '친구 추가 → ID로 추가'에 붙여넣어 주세요.</span>
+      </div>
+    </div>
+
+    <script>
+      // FAQ accordion
+      document.querySelectorAll('.faq-q').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const item = btn.parentElement;
+          const wasOpen = item.classList.contains('open');
+          document
+            .querySelectorAll('.faq-item')
+            .forEach((i) => i.classList.remove('open'));
+          if (!wasOpen) item.classList.add('open');
+        });
+      });
+
+      // Header solid on scroll
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          header.style.background = 'rgba(5,5,7,0.96)';
+        } else {
+          header.style.background = 'rgba(14,14,16,0.85)';
+        }
+      });
+
+      // Smooth scroll for in-page anchors handled by CSS scroll-behavior
+
+      // Mobile nav toggle
+      function toggleMobileNav(btn) {
+        const open = document.body.classList.toggle('nav-open');
+        btn.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+      }
+      // close mobile nav when link tapped
+      document.querySelectorAll('header nav a').forEach((a) => {
+        a.addEventListener('click', () => {
+          document.body.classList.remove('nav-open');
+          const btn = document.querySelector('.menu-toggle');
+          if (btn) btn.setAttribute('aria-label', '메뉴 열기');
+        });
+      });
+
+      // Kakao ID clipboard copy
+      function copyKakaoId(e) {
+        if (e) e.preventDefault();
+        const id = 'SJDT2';
+        const fallback = () => {
+          const ta = document.createElement('textarea');
+          ta.value = id;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try {
+            document.execCommand('copy');
+          } catch (err) {}
+          document.body.removeChild(ta);
+        };
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(id).catch(fallback);
+        } else {
+          fallback();
+        }
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        clearTimeout(window.__kakaoToastTimer);
+        window.__kakaoToastTimer = setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2800);
+      }
+    </script>
+  </body>
+</html>
